@@ -11,11 +11,11 @@ class CarsService extends ChangeNotifier {
   bool isLoading = true;
   bool isSaving = false;
 
-  CarsService(){
-    getAllDocs();
+  CarsService() {
+    // getAllDocs();
   }
 
-  Future<void> getAllDocs() async {
+  Future<void> getAllEspesificDocs() async {
     isLoading = true;
     notifyListeners();
 
@@ -29,4 +29,27 @@ class CarsService extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+
+  Future<List<Car>> getAllDocs(String typeCar) async {
+    // isLoading = true;
+    // notifyListeners();
+
+    QuerySnapshot<Map<String, dynamic>> data =
+        await FirebaseFirestore.instance.collection(typeCar).get();
+
+    final lisCars = data.docs.map((e) => Car.fromSnapshot(e)).toList();
+
+    // cars.addAll(lisCars);
+
+    // isLoading = false;
+    // notifyListeners();
+
+    return lisCars;
+  }
+
+  Future<void> setCar(String name) {
+    print("name");
+
+    FirebaseFirestore.instance.collection(collectionPath)
+     }
 }
