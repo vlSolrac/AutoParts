@@ -1,6 +1,5 @@
-import 'package:autoparts/screens/login_screen.dart';
-import 'package:autoparts/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:autoparts/screens/screens.dart';
 
 class RoutesApp {
   static String home = "home";
@@ -11,13 +10,11 @@ class RoutesApp {
   static String addCar = "addCar";
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    home: (p0) => const HomeScreen(),
-    fistHome: (p0) => const FistHomeScreen(),
-    login: (p0) => const LoginScreen(),
-    signup: (p0) => const RegisterScreen(),
-    carDetail: (p0) => const CarDetailScreen(),
-    addCar: (p0) => const AddCarScreen(),
+    home: (_) => const HomeScreen(),
+    fistHome: (_) => const FistHomeScreen(),
+    login: (_) => const LoginScreen(),
+    signup: (_) => const RegisterScreen(),
+    carDetail: (_) => const CarDetailScreen(),
+    addCar: (_) => const AddCarScreen(),
   };
-
-  
 }
