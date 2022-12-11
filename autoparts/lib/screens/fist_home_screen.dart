@@ -14,7 +14,7 @@ class FistHomeScreen extends StatelessWidget {
     // final statusBar = MediaQuery.of(context).viewPadding;
 
     return Scaffold(
-      body: LoginBackgroud(
+      body: FistHomeBackgroud(
         child: SingleChildScrollView(
           child: Column(
             children: [

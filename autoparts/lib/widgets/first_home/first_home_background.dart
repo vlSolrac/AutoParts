@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:autoparts/themes/themes.dart';
 
-class LoginBackgroud extends StatelessWidget {
+class FistHomeBackgroud extends StatelessWidget {
   final Widget child;
-  const LoginBackgroud({
+  const FistHomeBackgroud({
     Key? key,
     required this.child,
   }) : super(key: key);
