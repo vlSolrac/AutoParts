@@ -10,26 +10,29 @@ class HeaderFistHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Autoparts",
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: size.width * 0.08),
-          ),
-          SizedBox(height: size.height * 0.01),
-          SizedBox(
-            width: size.width * 0.7,
-            child: Text(
-              ConstApp.englishConst["fist_home"],
-              style: TextStyle(fontSize: size.width * 0.04),
-              textAlign: TextAlign.justify,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Autoparts",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: size.width * 0.08),
             ),
-          ),
-        ],
+            SizedBox(height: size.height * 0.01),
+            SizedBox(
+              width: size.width * 0.7,
+              child: Text(
+                ConstApp.englishConst["fist_home"],
+                style: TextStyle(fontSize: size.width * 0.04),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

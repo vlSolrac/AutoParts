@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class RoundedButtonFistHome extends StatelessWidget {
+class RoundedButton extends StatelessWidget {
   final Function()? onPressed;
   final String text;
   final Color color;
   final double fontSize;
   final Color textColor;
   final double paddingInside;
-  const RoundedButtonFistHome({
+  const RoundedButton({
     Key? key,
     this.onPressed,
     required this.text,
