@@ -91,7 +91,8 @@ class CarsService extends ChangeNotifier {
         .collection("Autoparts")
         .doc("Vehicle")
         .collection(UniqueKey().toString())
-        .doc(name).set(car.toMap());
+        .doc(name)
+        .set(car.toMap());
 
     // await FirebaseIntance.fireBase.collection("Vehicle").add();
   }
