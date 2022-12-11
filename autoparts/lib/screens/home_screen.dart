@@ -15,29 +15,29 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     // final statusBar = MediaQuery.of(context).viewPadding;
     final firebaseService = Provider.of<CarsService>(context);
+    firebaseService.setCar("Rio");
 
-    return Scaffold(
-      body: Center(
-        child: FutureBuilder(
-          future: firebaseService.getAllDocs("Stratus"),
-          builder: (_, AsyncSnapshot<List<Car>> snapshot) {
-            final allParts = snapshot.data;
-            return !snapshot.hasData
-                ? SizedBox(
-                    height: size.height * 0.01,
-                    width: double.infinity,
-                    child: const CupertinoActivityIndicator(),
-                  )
-                : ListView.builder(
-                    itemCount: allParts!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final car = allParts[index];
-                      return Text(car.description);
-                    },
-                  );
-          },
-        ),
-      ),
+    return const Scaffold(
+      body: Center( child: Text("asda")
+        // child: FutureBuilder(
+        //   future: firebaseService.getAllDocs("Stratus"),
+        //   builder: (_, AsyncSnapshot<List<CarParts>> snapshot) {
+        //     final allParts = snapshot.data;
+        //     return !snapshot.hasData
+        //         ? SizedBox(
+        //             height: size.height * 0.01,
+        //             width: double.infinity,
+        //             child: const CupertinoActivityIndicator(),
+        //           )
+        //         : ListView.builder(
+        //             itemCount: allParts!.length,
+        //             itemBuilder: (BuildContext context, int index) {
+        //               final car = allParts[index];
+        //               return Text(car.description);
+        //             },
+        //           );
+        //   },
+         ),
     );
   }
 }
