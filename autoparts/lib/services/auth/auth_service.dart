@@ -7,7 +7,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService extends ChangeNotifier {
-  bool hasToken = false;
+  bool hasIdUSer = false;
+
+  late UserCar currentUser;
+
+  AuthService() {}
 
   Future<bool> createUser(
       {required String email,
@@ -52,6 +56,8 @@ class AuthService extends ChangeNotifier {
       UserCredential res = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
+      Preferences.idUser = res.user!.uid;
+
       return true;
     } catch (e) {
       return false;
@@ -59,7 +65,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future logout() async {
+  Future<void> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
       await Preferences.deletePreferences();
@@ -69,12 +75,31 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future<String?> getToken() async {
-    final token = Preferences.token;
+  Future<String> getCurrentUse() async {
+    final id = FirebaseAuth.instance.currentUser?.uid;
+    if (id == null) return "";
 
-    if (token.isNotEmpty) {
-      hasToken = true;
-      return Preferences.token;
+    final userCar = await FirebaseIntance.fireBase
+        .collection("Autoparts")
+        .doc("User")
+        .collection("Users")
+        .doc(id)
+        .get();
+
+    currentUser = UserCar.fromMap(userCar.data()!);
+    currentUser.id = userCar.id;
+
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return id;
+  }
+
+  Future<String?> getIdUser() async {
+    final id = Preferences.idUser;
+
+    if (id.isNotEmpty) {
+      hasIdUSer = true;
+      return Preferences.idUser;
     }
     return "";
   }

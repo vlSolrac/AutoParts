@@ -28,7 +28,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(ConstApp.englishConst["login_header"],
+                    Text("SIGN UP",
                         style: Theme.of(context).textTheme.headline4),
                     SizedBox(height: size.height * 0.05),
                     ChangeNotifierProvider(
@@ -41,7 +41,7 @@ class RegisterScreen extends StatelessWidget {
               SizedBox(height: size.height * 0.05),
               GestureDetector(
                 onTap: () =>
-                    Navigator.popAndPushNamed(context, RoutesApp.signup),
+                    Navigator.popAndPushNamed(context, RoutesApp.login),
                 child: Text(
                   ConstApp.englishConst["login_dont_exist"],
                   style: const TextStyle(

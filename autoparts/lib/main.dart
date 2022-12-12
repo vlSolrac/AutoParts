@@ -1,4 +1,5 @@
 import 'package:autoparts/firebase_options.dart';
+import 'package:autoparts/helpers/preferences.dart';
 import 'package:autoparts/routes/routes_app.dart';
 import 'package:autoparts/services/services.dart';
 import 'package:autoparts/themes/theme.dart';
@@ -8,6 +9,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const AppState());
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'My Car',
       theme: ThemeApp.lightTheme,
-      initialRoute: RoutesApp.fistHome,
+      initialRoute: RoutesApp.splash,
       routes: RoutesApp.routes,
     );
   }
