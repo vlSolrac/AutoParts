@@ -1,6 +1,5 @@
 import 'package:autoparts/firebase_options.dart';
 import 'package:autoparts/routes/routes_app.dart';
-import 'package:autoparts/screens/home_screen.dart';
 import 'package:autoparts/services/services.dart';
 import 'package:autoparts/themes/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,6 +21,7 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CarsService()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
       ],
       child: const MyApp(),
     );
