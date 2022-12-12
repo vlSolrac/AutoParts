@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User {
-  User({
+class UserCar {
+  UserCar({
     required this.email,
     required this.password,
     required this.nickname,
@@ -25,11 +25,11 @@ class User {
   String? id;
   String? img;
 
-  factory User.fromJson(String str) => User.fromMap(json.decode(str));
+  factory UserCar.fromJson(String str) => UserCar.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromMap(Map<String, dynamic> json) => User(
+  factory UserCar.fromMap(Map<String, dynamic> json) => UserCar(
         email: json["Email"],
         password: json["Password"],
         nickname: json["Nickname"] ?? "",
@@ -40,8 +40,8 @@ class User {
         img: json["Img"],
       );
 
-  factory User.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> json) =>
-      User(
+  factory UserCar.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> json) =>
+      UserCar(
         id: json.id,
         email: json["Email"],
         password: json["Password"],

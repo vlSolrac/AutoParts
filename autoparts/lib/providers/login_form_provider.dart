@@ -4,15 +4,13 @@ import 'package:flutter/material.dart';
 class LoginFormProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  // String email = '';
-  // String password = '';
-  // String email = '';
-  // String password = '';
-  // String email = '';
-  // String password = '';
-  // String email = '';
-  // String password = '';
-  late User currentUser;
+  String email = '';
+  String password = '';
+  String celphone= '';
+  String name = '';
+  String middlename= '';
+  String nickname = '';
+  late UserCar currentUser;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;

@@ -70,7 +70,7 @@ class _LoginForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecorations.authInputDecoration(
                 hintText: 'john.doe@gmail.com',
-                labelText: 'Correo electrónico',
+                labelText: 'Email',
                 prefixIcon: Icons.alternate_email_rounded),
             onChanged: (value) => loginForm.currentUser.email = value,
             validator: (value) {
@@ -87,10 +87,10 @@ class _LoginForm extends StatelessWidget {
           TextFormField(
             autocorrect: false,
             obscureText: true,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.text,
             decoration: InputDecorations.authInputDecoration(
                 hintText: '*****',
-                labelText: 'Contraseña',
+                labelText: 'Password',
                 prefixIcon: Icons.lock_outline),
             onChanged: (value) => loginForm.currentUser.password = value,
             validator: (value) {
@@ -105,7 +105,7 @@ class _LoginForm extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             disabledColor: Colors.grey,
             elevation: 0,
-            color: Colors.deepPurple,
+            color: ThemeApp.primary,
             onPressed: loginForm.isLoading
                 ? null
                 : () async {
@@ -133,100 +133,13 @@ class _LoginForm extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
               child: Text(
-                loginForm.isLoading ? 'Espere' : 'Ingresar',
+                loginForm.isLoading ? 'Wait' : 'Ingresar',
                 style: const TextStyle(color: Colors.white),
               ),
             ),
           )
         ],
       ),
-    );
-  }
-}
-
-class LoginBackground extends StatelessWidget {
-  final Widget child;
-  const LoginBackground({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-
-    return SizedBox(
-      width: double.infinity,
-      height: double.infinity,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          const Positioned(top: 0, left: 0, right: 0, child: _HeaderBox()),
-          const Positioned(top: 0, left: 0, right: 0, child: _HeaderIcon()),
-          child,
-        ],
-      ),
-    );
-  }
-}
-
-class _HeaderBox extends StatelessWidget {
-  const _HeaderBox({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Container(
-      width: double.infinity,
-      height: size.height * 0.5,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            colors: [ThemeApp.secondary, Colors.tealAccent[400]!]),
-      ),
-      child: Stack(
-        children: [
-          Positioned(top: 90, left: 30, child: _Bubble()),
-          Positioned(top: -40, left: -30, child: _Bubble()),
-          Positioned(top: -50, right: -20, child: _Bubble()),
-          Positioned(bottom: -50, left: 10, child: _Bubble()),
-          Positioned(bottom: 120, right: 20, child: _Bubble()),
-        ],
-      ),
-    );
-  }
-}
-
-class _HeaderIcon extends StatelessWidget {
-  const _HeaderIcon({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.only(top: 30),
-        child: const Icon(Icons.person_pin, color: Colors.white, size: 100),
-      ),
-    );
-  }
-}
-
-class _Bubble extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Container(
-      width: size.width * 0.25,
-      height: size.height * 0.12,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: const Color.fromRGBO(255, 255, 255, 0.09)),
     );
   }
 }
