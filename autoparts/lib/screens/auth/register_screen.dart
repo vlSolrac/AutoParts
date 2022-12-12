@@ -32,7 +32,9 @@ class RegisterScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline4),
                     SizedBox(height: size.height * 0.05),
                     ChangeNotifierProvider(
-                        create: (_) => LoginFormProvider(), child: _LoginForm())
+                      create: (_) => RegisterFormProvider(),
+                      child: _RegisterForm(),
+                    ),
                   ],
                 ),
               ),
@@ -54,15 +56,15 @@ class RegisterScreen extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
+class _RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final loginForm = Provider.of<LoginFormProvider>(context);
+    final registerForm = Provider.of<RegisterFormProvider>(context);
     final size = MediaQuery.of(context).size;
     return SizedBox(
       height: size.height * 0.38,
       child: Form(
-        key: loginForm.formKey,
+        key: registerForm.formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           child: Column(
@@ -74,7 +76,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: 'john.doe@gmail.com',
                     labelText: 'Correo electrónico',
                     prefixIcon: Icons.alternate_email_rounded),
-                onChanged: (value) => loginForm.email = value,
+                onChanged: (value) => registerForm.email = value,
                 validator: (value) {
                   String pattern =
                       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -94,7 +96,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: '*****',
                     labelText: 'Contraseña',
                     prefixIcon: Icons.lock_outline),
-                onChanged: (value) => loginForm.password = value,
+                onChanged: (value) => registerForm.password = value,
                 validator: (value) {
                   return (value != null && value.length >= 6)
                       ? null
@@ -109,7 +111,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: '871114556',
                     labelText: 'Cel Phone',
                     prefixIcon: Icons.phone),
-                onChanged: (value) => loginForm.celphone = value,
+                onChanged: (value) => registerForm.celphone = value,
                 // validator: (value) {
                 //   String pattern =
                 //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -128,7 +130,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: 'Carlos',
                     labelText: 'Name',
                     prefixIcon: Icons.person),
-                onChanged: (value) => loginForm.name = value,
+                onChanged: (value) => registerForm.name = value,
                 // validator: (value) {
                 //   String pattern =
                 //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -147,7 +149,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: 'Vela',
                     labelText: 'Middle Name',
                     prefixIcon: Icons.person),
-                onChanged: (value) => loginForm.middlename = value,
+                onChanged: (value) => registerForm.middlename = value,
                 // validator: (value) {
                 //   String pattern =
                 //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -166,7 +168,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: 'vlSolrac',
                     labelText: 'Nickname',
                     prefixIcon: Icons.person_pin_rounded),
-                onChanged: (value) => loginForm.nickname = value,
+                onChanged: (value) => registerForm.nickname = value,
                 // validator: (value) {
                 //   String pattern =
                 //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -184,7 +186,7 @@ class _LoginForm extends StatelessWidget {
                 disabledColor: Colors.grey,
                 elevation: 0,
                 color: ThemeApp.primary,
-                onPressed: loginForm.isLoading
+                onPressed: registerForm.isLoading
                     ? null
                     : () async {
                         FocusScope.of(context).unfocus();
@@ -192,31 +194,31 @@ class _LoginForm extends StatelessWidget {
                         final authServices =
                             Provider.of<AuthService>(context, listen: false);
 
-                        if (!loginForm.isValidForm()) return;
+                        if (!registerForm.isValidForm()) return;
 
-                        loginForm.isLoading = true;
+                        registerForm.isLoading = true;
 
-                        final String? res = await authServices.createUser(
-                            email: loginForm.email,
-                            password: loginForm.password,
-                            celphone: loginForm.celphone,
-                            name: loginForm.name,
-                            middlename: loginForm.middlename,
-                            nickname: loginForm.nickname);
+                        final bool res = await authServices.createUser(
+                            email: registerForm.email,
+                            password: registerForm.password,
+                            celphone: registerForm.celphone,
+                            name: registerForm.name,
+                            middlename: registerForm.middlename,
+                            nickname: registerForm.nickname);
 
-                        if (res == null) {
+                        if (res) {
                           // ignore: use_build_context_synchronously
                           Navigator.popAndPushNamed(context, RoutesApp.home);
                         } else {
                           // NotificationService.showSnackbar(res);
-                          loginForm.isLoading = false;
+                          registerForm.isLoading = false;
                         }
                       },
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   child: Text(
-                    loginForm.isLoading ? 'Espere' : 'Ingresar',
+                    registerForm.isLoading ? 'Espere' : 'Ingresar',
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),

@@ -72,7 +72,7 @@ class _LoginForm extends StatelessWidget {
                 hintText: 'john.doe@gmail.com',
                 labelText: 'Email',
                 prefixIcon: Icons.alternate_email_rounded),
-            onChanged: (value) => loginForm.currentUser.email = value,
+            onChanged: (value) => loginForm.email = value,
             validator: (value) {
               String pattern =
                   r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -92,7 +92,7 @@ class _LoginForm extends StatelessWidget {
                 hintText: '*****',
                 labelText: 'Password',
                 prefixIcon: Icons.lock_outline),
-            onChanged: (value) => loginForm.currentUser.password = value,
+            onChanged: (value) => loginForm.password = value,
             validator: (value) {
               return (value != null && value.length >= 6)
                   ? null
@@ -118,11 +118,11 @@ class _LoginForm extends StatelessWidget {
 
                     loginForm.isLoading = true;
 
-                    final String? res = await authServices.loginUser(
-                        loginForm.currentUser.email,
-                        loginForm.currentUser.password);
+                    final bool res = await authServices.loginUser(
+                        loginForm.email,
+                        loginForm.password);
 
-                    if (res == null) {
+                    if (res) {
                       // ignore: use_build_context_synchronously
                       Navigator.popAndPushNamed(context, RoutesApp.home);
                     } else {
