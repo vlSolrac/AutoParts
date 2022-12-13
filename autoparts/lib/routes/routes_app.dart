@@ -9,6 +9,7 @@ class RoutesApp {
   static String carDetail = "carDetail";
   static String addCar = "addCar";
   static String splash = "splash";
+  static String drawer = "drawer";
 
   static Map<String, Widget Function(BuildContext)> routes = {
     home: (_) => const HomeScreen(),
@@ -17,6 +18,7 @@ class RoutesApp {
     signup: (_) => const RegisterScreen(),
     carDetail: (_) => const CarDetailScreen(),
     addCar: (_) => const AddCarScreen(),
-    splash: (_) => const SplashScreen()
+    splash: (_) => const SplashScreen(),
+    drawer: (_) => const DrawerCustomScreen()
   };
 }

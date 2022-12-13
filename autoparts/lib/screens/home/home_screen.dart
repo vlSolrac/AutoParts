@@ -14,9 +14,11 @@ class HomeScreen extends StatelessWidget {
     //global variables.
     // final size = MediaQuery.of(context).size;
     // final statusBar = MediaQuery.of(context).viewPadding;
+    // //https://www.youtube.com/watch?v=Evu19gTKaFo
 
     final firebaseService = Provider.of<CarsService>(context);
     final authService = Provider.of<AuthService>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Cars"),

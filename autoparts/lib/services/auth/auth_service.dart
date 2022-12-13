@@ -56,6 +56,8 @@ class AuthService extends ChangeNotifier {
 
       Preferences.idUser = res.user!.uid;
 
+      await getCurrentUse();
+
       return true;
     } catch (e) {
       return false;
