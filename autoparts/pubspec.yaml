@@ -36,7 +36,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.6
-  hidden_drawer_menu: ^3.0.1
   http: ^0.13.5
   image_picker: ^0.8.6
   lottie: ^2.0.0

@@ -19,6 +19,5 @@ class RoutesApp {
     carDetail: (_) => const CarDetailScreen(),
     addCar: (_) => const AddCarScreen(),
     splash: (_) => const SplashScreen(),
-    drawer: (_) => const DrawerCustomScreen()
   };
 }

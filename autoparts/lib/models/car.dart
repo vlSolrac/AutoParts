@@ -7,17 +7,25 @@ class Car {
     required this.engine,
     required this.model,
     required this.year,
-    required this.date,
+    this.date,
     this.id,
     this.img,
+    this.name,
   });
 
-  final String engine;
-  final String model;
-  final String year;
-  final Timestamp date;
+  String engine;
+  String model;
+  String year;
+  Timestamp? date;
   String? id;
   String? img;
+  String? name;
+
+  String get image {
+    return img == null
+        ? "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
+        : img!;
+  }
 
   factory Car.fromJson(String str) => Car.fromMap(json.decode(str));
 
@@ -26,7 +34,7 @@ class Car {
   factory Car.fromMap(Map<String, dynamic> json) => Car(
         engine: json["Engine"],
         model: json["Model"],
-        img: json["Img"] ?? "",
+        img: json["Img"],
         year: json["Year"],
         date: json["Date"],
       );
@@ -47,4 +55,14 @@ class Car {
         "Year": year,
         "Date": date
       };
+
+  Car copy() => Car(
+        engine: engine,
+        name: name,
+        model: model,
+        year: year,
+        date: date,
+        img: img,
+        id: id,
+      );
 }

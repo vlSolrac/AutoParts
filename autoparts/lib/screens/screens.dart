@@ -1,4 +1,3 @@
-export 'package:autoparts/screens/home/drawer_custom.dart';
 
 export 'package:autoparts/screens/splash_screen.dart';
 

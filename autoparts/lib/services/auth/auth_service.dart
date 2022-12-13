@@ -69,7 +69,7 @@ class AuthService extends ChangeNotifier {
     try {
       await FirebaseAuth.instance.signOut();
       await Preferences.deletePreferences();
-      notifyListeners();
+      // notifyListeners();
     } catch (e) {
       print(e);
     }
