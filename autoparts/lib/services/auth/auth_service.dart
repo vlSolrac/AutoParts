@@ -11,8 +11,6 @@ class AuthService extends ChangeNotifier {
 
   late UserCar currentUser;
 
-  AuthService() {}
-
   Future<bool> createUser(
       {required String email,
       required String password,
